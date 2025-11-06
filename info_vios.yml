@@ -4,7 +4,7 @@
   gather_facts: no
   tasks:
     - name: Mostrar hostname y versión
-      raw: "/usr/bin/ksh -c 'hostname; echo \$SHELL; oslevel -s || lsvios'"
+      command: hostname
       register: vios_info
       ignore_errors: yes
 
