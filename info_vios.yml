@@ -1,0 +1,13 @@
+---
+- name: Información de VIOS via Jump Host
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Mostrar hostname y versión
+      raw: "/usr/bin/ksh -c 'hostname; echo \$SHELL; oslevel -s || lsvios'"
+      register: vios_info
+      ignore_errors: yes
+
+    - name: Mostrar resultados
+      debug:
+        msg: "{{ vios_info.stdout_lines }}"
